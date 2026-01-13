@@ -1,0 +1,174 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "1765970315b45aeb9a": {
+      "type": "_blocks",
+      "settings": {}
+    },
+    "1765969871e9b0db2b": {
+      "type": "_blocks",
+      "settings": {}
+    },
+    "image_banner": {
+      "type": "image-banner",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Browse our latest products",
+            "heading_size": "h0"
+          }
+        }
+      },
+      "block_order": [
+        "heading"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/pic17.avif",
+        "image_2": "shopify://shop_images/pic18.webp",
+        "image_overlay_opacity": 40,
+        "image_height": "large",
+        "image_behavior": "none",
+        "desktop_content_position": "bottom-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": false,
+        "color_scheme": "scheme-5",
+        "stack_images_on_mobile": false,
+        "mobile_content_alignment": "center",
+        "show_text_below": false
+      }
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "all",
+        "products_to_show": 8,
+        "title": "Featured products",
+        "heading_size": "h1",
+        "description": "<p>Take a look at our products!</p>",
+        "show_description": false,
+        "description_style": "uppercase",
+        "columns_desktop": 4,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "scheme-3",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": true,
+        "show_rating": false,
+        "quick_add": "standard",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 44,
+        "padding_bottom": 44
+      }
+    },
+    "blocks_mfLwXQ": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_c85d63f_hcicGE": {
+          "type": "ai_gen_block_c85d63f",
+          "settings": {
+            "feedback_text": "Absolutely love this store! Worth every penny. - Kenneth Mosses",
+            "show_icon": true,
+            "icon_type": "quote",
+            "alignment": "center",
+            "text_style": "italic",
+            "text_size": 16,
+            "text_color": "#121212",
+            "icon_size": 24,
+            "icon_color": "#334fb4",
+            "background_color": "#f3f3f3",
+            "border_radius": 8,
+            "padding_vertical": 20,
+            "padding_horizontal": 24,
+            "desktop_width_percent": 100
+          },
+          "blocks": {}
+        },
+        "ai_gen_block_54864bf_iwzehg": {
+          "type": "ai_gen_block_54864bf",
+          "settings": {
+            "helpful_label": "Was this helpful?",
+            "thumbs_up_count": 0,
+            "thumbs_down_count": 0,
+            "background_color": "#ffffff",
+            "border_color": "#e0e0e0",
+            "text_color": "#121212",
+            "padding": 16,
+            "border_radius": 8,
+            "label_font_size": 14,
+            "count_font_size": 14,
+            "button_background": "#ffffff",
+            "button_hover_background": "#f8f8f8",
+            "button_active_background": "#334fb4",
+            "button_border_color": "#e0e0e0",
+            "button_hover_border_color": "#cccccc",
+            "button_active_border_color": "#334fb4",
+            "button_border_radius": 20,
+            "icon_size": 18,
+            "icon_color": "#666666",
+            "icon_hover_color": "#121212",
+            "icon_active_color": "#ffffff",
+            "count_color": "#666666",
+            "count_active_color": "#ffffff",
+            "desktop_width_percent": 100
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_c85d63f_hcicGE",
+        "ai_gen_block_54864bf_iwzehg"
+      ],
+      "name": "Testimonial",
+      "settings": {}
+    },
+    "custom_content_dh6qKL": {
+      "type": "custom-content",
+      "blocks": {
+        "button_e94eVC": {
+          "type": "button",
+          "settings": {
+            "label": "Click me",
+            "link": ""
+          }
+        },
+        "image_XG6jqT": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/hand-holds-a-large-bundle-of-bracelets.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "button_e94eVC",
+        "image_XG6jqT"
+      ],
+      "name": "Custom Content",
+      "settings": {
+        "heading": "Custom Section Heading",
+        "text": "This is custom section text."
+      }
+    }
+  },
+  "order": [
+    "1765970315b45aeb9a",
+    "1765969871e9b0db2b",
+    "image_banner",
+    "featured_collection",
+    "blocks_mfLwXQ",
+    "custom_content_dh6qKL"
+  ]
+}

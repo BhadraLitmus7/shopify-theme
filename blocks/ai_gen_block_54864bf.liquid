@@ -1,0 +1,409 @@
+{% doc %}
+  @prompt
+    react to the customer feedback given. other customers could give a thumps up or down to this customers review, i have already added the customers name and feedback, i just need the 'was this helpful' and reaction part
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-review-reactions-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+  }
+
+  .ai-review-reactions__container-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: {{ block.settings.padding }}px;
+    background-color: {{ block.settings.background_color }};
+    border-radius: {{ block.settings.border_radius }}px;
+    border: 1px solid {{ block.settings.border_color }};
+  }
+
+  .ai-review-reactions__label-{{ ai_gen_id }} {
+    font-size: {{ block.settings.label_font_size }}px;
+    color: {{ block.settings.text_color }};
+    font-weight: 500;
+  }
+
+  .ai-review-reactions__buttons-{{ ai_gen_id }} {
+    display: flex;
+    gap: 8px;
+  }
+
+  .ai-review-reactions__button-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background-color: {{ block.settings.button_background }};
+    border: 1px solid {{ block.settings.button_border_color }};
+    border-radius: {{ block.settings.button_border_radius }}px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .ai-review-reactions__button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_background }};
+    border-color: {{ block.settings.button_hover_border_color }};
+  }
+
+  .ai-review-reactions__button-{{ ai_gen_id }}--active {
+    background-color: {{ block.settings.button_active_background }};
+    border-color: {{ block.settings.button_active_border_color }};
+  }
+
+  .ai-review-reactions__icon-{{ ai_gen_id }} {
+    width: {{ block.settings.icon_size }}px;
+    height: {{ block.settings.icon_size }}px;
+    fill: {{ block.settings.icon_color }};
+    transition: fill 0.2s ease;
+  }
+
+  .ai-review-reactions__button-{{ ai_gen_id }}:hover .ai-review-reactions__icon-{{ ai_gen_id }} {
+    fill: {{ block.settings.icon_hover_color }};
+  }
+
+  .ai-review-reactions__button-{{ ai_gen_id }}--active .ai-review-reactions__icon-{{ ai_gen_id }} {
+    fill: {{ block.settings.icon_active_color }};
+  }
+
+  .ai-review-reactions__count-{{ ai_gen_id }} {
+    font-size: {{ block.settings.count_font_size }}px;
+    color: {{ block.settings.count_color }};
+    font-weight: 500;
+  }
+
+  .ai-review-reactions__button-{{ ai_gen_id }}--active .ai-review-reactions__count-{{ ai_gen_id }} {
+    color: {{ block.settings.count_active_color }};
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-review-reactions-{{ ai_gen_id }} {
+      width: 100%;
+    }
+
+    .ai-review-reactions__container-{{ ai_gen_id }} {
+      flex-wrap: wrap;
+      padding: {{ block.settings.padding | times: 0.7 }}px;
+    }
+  }
+{% endstyle %}
+
+<review-reactions-{{ ai_gen_id }}
+  class="ai-review-reactions-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-review-reactions__container-{{ ai_gen_id }}">
+    <span class="ai-review-reactions__label-{{ ai_gen_id }}">{{ block.settings.helpful_label }}</span>
+    <div class="ai-review-reactions__buttons-{{ ai_gen_id }}">
+      <button
+        class="ai-review-reactions__button-{{ ai_gen_id }} ai-review-reactions__button-{{ ai_gen_id }}--thumbs-up"
+        data-reaction="up"
+        aria-label="Mark review as helpful"
+      >
+        <svg class="ai-review-reactions__icon-{{ ai_gen_id }}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/>
+        </svg>
+        <span class="ai-review-reactions__count-{{ ai_gen_id }}" data-count="up">{{ block.settings.thumbs_up_count }}</span>
+      </button>
+
+      <button
+        class="ai-review-reactions__button-{{ ai_gen_id }} ai-review-reactions__button-{{ ai_gen_id }}--thumbs-down"
+        data-reaction="down"
+        aria-label="Mark review as not helpful"
+      >
+        <svg class="ai-review-reactions__icon-{{ ai_gen_id }}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M15 3H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 23l6.59-6.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z"/>
+        </svg>
+        <span class="ai-review-reactions__count-{{ ai_gen_id }}" data-count="down">{{ block.settings.thumbs_down_count }}</span>
+      </button>
+    </div>
+  </div>
+</review-reactions-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class ReviewReactions{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.userReaction = null;
+      }
+
+      connectedCallback() {
+        this.buttons = this.querySelectorAll('.ai-review-reactions__button-{{ ai_gen_id }}');
+        this.setupEventListeners();
+        this.loadUserReaction();
+      }
+
+      setupEventListeners() {
+        this.buttons.forEach((button) => {
+          button.addEventListener('click', (e) => {
+            e.preventDefault();
+            const reaction = button.dataset.reaction;
+            this.handleReaction(reaction);
+          });
+        });
+      }
+
+      loadUserReaction() {
+        const stored = localStorage.getItem('review-reaction-{{ ai_gen_id }}');
+        if (stored) {
+          this.userReaction = stored;
+          this.updateButtonStates();
+        }
+      }
+
+      handleReaction(reaction) {
+        const button = this.querySelector(`[data-reaction="${reaction}"]`);
+        const countElement = button.querySelector('[data-count]');
+        let currentCount = parseInt(countElement.textContent);
+
+        if (this.userReaction === reaction) {
+          currentCount--;
+          this.userReaction = null;
+          button.classList.remove('ai-review-reactions__button-{{ ai_gen_id }}--active');
+          localStorage.removeItem('review-reaction-{{ ai_gen_id }}');
+        } else {
+          if (this.userReaction) {
+            const previousButton = this.querySelector(`[data-reaction="${this.userReaction}"]`);
+            const previousCount = previousButton.querySelector('[data-count]');
+            previousCount.textContent = parseInt(previousCount.textContent) - 1;
+            previousButton.classList.remove('ai-review-reactions__button-{{ ai_gen_id }}--active');
+          }
+
+          currentCount++;
+          this.userReaction = reaction;
+          button.classList.add('ai-review-reactions__button-{{ ai_gen_id }}--active');
+          localStorage.setItem('review-reaction-{{ ai_gen_id }}', reaction);
+        }
+
+        countElement.textContent = currentCount;
+      }
+
+      updateButtonStates() {
+        this.buttons.forEach((button) => {
+          if (button.dataset.reaction === this.userReaction) {
+            button.classList.add('ai-review-reactions__button-{{ ai_gen_id }}--active');
+          } else {
+            button.classList.remove('ai-review-reactions__button-{{ ai_gen_id }}--active');
+          }
+        });
+      }
+    }
+
+    customElements.define('review-reactions-{{ ai_gen_id }}', ReviewReactions{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Review reactions",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "helpful_label",
+      "label": "Label",
+      "default": "Was this helpful?"
+    },
+    {
+      "type": "range",
+      "id": "thumbs_up_count",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "label": "Initial thumbs up",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "thumbs_down_count",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "label": "Initial thumbs down",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border",
+      "default": "#e0e0e0"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#121212"
+    },
+    {
+      "type": "range",
+      "id": "padding",
+      "min": 8,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "label_font_size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Label font size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "count_font_size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Count font size",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Button style"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_background",
+      "label": "Hover background",
+      "default": "#f8f8f8"
+    },
+    {
+      "type": "color",
+      "id": "button_active_background",
+      "label": "Active background",
+      "default": "#334fb4"
+    },
+    {
+      "type": "color",
+      "id": "button_border_color",
+      "label": "Border",
+      "default": "#e0e0e0"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_border_color",
+      "label": "Hover border",
+      "default": "#cccccc"
+    },
+    {
+      "type": "color",
+      "id": "button_active_border_color",
+      "label": "Active border",
+      "default": "#334fb4"
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Button border radius",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Icon style"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "min": 14,
+      "max": 28,
+      "step": 2,
+      "unit": "px",
+      "label": "Icon size",
+      "default": 18
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "icon_hover_color",
+      "label": "Hover icon",
+      "default": "#121212"
+    },
+    {
+      "type": "color",
+      "id": "icon_active_color",
+      "label": "Active icon",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "count_color",
+      "label": "Count",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "count_active_color",
+      "label": "Active count",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    }
+  ],
+  "presets": [
+    {
+      "name": "Review reactions"
+    }
+  ]
+}
+{% endschema %}

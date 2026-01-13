@@ -1,0 +1,253 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "vendor": {
+          "type": "text",
+          "settings": {
+            "text": "{{ product.vendor }}",
+            "text_style": "uppercase"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "text_XQkmLA": {
+          "type": "text",
+          "settings": {
+            "text": "{{ product.metafields.custom.secondary_title.value }}",
+            "text_style": "body"
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": false
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
+        },
+        "share": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share"
+          }
+        }
+      },
+      "block_order": [
+        "vendor",
+        "title",
+        "text_XQkmLA",
+        "price",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "description",
+        "share"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "scheme-1",
+        "media_size": "large",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "gallery_layout": "stacked",
+        "mobile_thumbnails": "hide",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 12
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "settings": {
+        "heading": "What our customers say"
+      }
+    },
+    "blocks_JxqpMg": {
+      "type": "_blocks",
+      "name": "Customer feedback",
+      "settings": {}
+    },
+    "blocks_4jFHdf": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_6dcfef7_Jj7yeh": {
+          "type": "ai_gen_block_6dcfef7",
+          "disabled": true,
+          "settings": {
+            "quote": "<p>This product exceeded my expectations. Highly recommend!</p>",
+            "author": "Sarah Johnson",
+            "text_alignment": "center",
+            "max_width": 700,
+            "quote_size": 18,
+            "author_size": 14,
+            "background_color": "#f3f3f3",
+            "text_color": "#121212",
+            "author_color": "#121212",
+            "desktop_width_percent": 100
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_6dcfef7_Jj7yeh"
+      ],
+      "name": "Testimonial",
+      "settings": {}
+    },
+    "multicolumn_UMRPrK": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_3UAWqn": {
+          "type": "column",
+          "settings": {
+            "title": "Alen Dsouza",
+            "text": "<p>Amazing product</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_RxaJbP": {
+          "type": "column",
+          "settings": {
+            "title": "Maya Johnson",
+            "text": "<p>Exactly what I expected</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_mUDtEf": {
+          "type": "column",
+          "settings": {
+            "title": "Sreeparvathy",
+            "text": "<p>I love it!</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_3UAWqn",
+        "column_RxaJbP",
+        "column_mUDtEf"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "What our customers say",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "Show more",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "1768194721fb68e8fb": {
+      "type": "apps",
+      "blocks": {
+        "subi_subscriptions_app_block_Q8BDxC": {
+          "type": "shopify://apps/subi-subscriptions/blocks/app-block/bc0dba25-cd46-4841-bea4-6bdfe9ac815f",
+          "settings": {
+            "product": "{{product}}",
+            "use_app_block_wording": false,
+            "widget_label": "Purchase options",
+            "one_time_purchase_text": "One-Time Purchase",
+            "subscription_text": "Subscribe and save",
+            "delivery_frequency_text": "Delivery frequency",
+            "prepaid_subscription_text": "Subscription with prepaid",
+            "skin1_priceSuffix": "each",
+            "skin1_save": "Save(skin1)",
+            "skin1_prepaid_payment_title": "prepaid",
+            "skin1_normal_payment_title": "pay as you go",
+            "skin2_discountSuffix": "Save",
+            "skin3_fullPrice": "Full price",
+            "skin3_priceSuffix": "each",
+            "skin3_discountSuffix": "Off",
+            "skin4_justOnce": "Just once",
+            "skin4_discountSuffix": "Off",
+            "skin4_priceSuffix": "each",
+            "skin4_fullPrice": "(Full price)",
+            "skin4_sellingPlansTitle": "Renews every:",
+            "from": "from",
+            "max_discount_badge_title": "UP To",
+            "pay": "Pay",
+            "price_save_up_to": "save up to"
+          }
+        }
+      },
+      "block_order": [
+        "subi_subscriptions_app_block_Q8BDxC"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "related-products",
+    "testimonials",
+    "blocks_JxqpMg",
+    "blocks_4jFHdf",
+    "multicolumn_UMRPrK",
+    "1768194721fb68e8fb"
+  ]
+}
